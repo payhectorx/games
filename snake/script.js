@@ -40,10 +40,19 @@ function draw() {
   ctx.fillStyle = "#222";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+  let psx = 0
+  for (let index = 0; index <10; index++) {
+    ctx.fillStyle = "#16ec7aff";
+    ctx.fillRect(canvas.width/2-5 + psx, canvas.height/2-5, 10, 10);
+    psx += 20;
+  }
+  
   // Draw food
   ctx.fillStyle = "#e91e63";
   ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
+
 }
+
 
 function endGame() {
   gameOver = true;
