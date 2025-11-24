@@ -17,6 +17,12 @@ let score;
 let gameOver;
 let loopId;
 
+const snakeWidth = 10;
+let sx = (canvas.width/2-5) + (snakeWidth/2);
+
+const snakeHeight = 10;
+let ssx = (canvas.height/2-5) + (snakeHeight/2);
+
 // Initialize or reset the game
 function resetGame() {
   if (loopId) {
@@ -39,18 +45,23 @@ function draw() {
   // Clear the canvas
   ctx.fillStyle = "#222";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-
+  let psy = 0
   let psx = 0
+  let even = true;
+  const colorA = "#16ec7aff";
+  const colorB = "#1f7848ff";
   for (let index = 0; index <10; index++) {
-    ctx.fillStyle = "#16ec7aff";
-    ctx.fillRect(canvas.width/2-5 + psx, canvas.height/2-5, 10, 10);
-    psx += 20;
+    if (even == true){
+      ctx.fillStyle = colorA;
+    }else{
+      ctx.fillStyle = colorB;
+    }
+    
+    ctx.fillRect(sx + psx, ssx + psy, 10, 10);
+    psx += 10;
+    even = !even
   }
   
-  // Draw food
-  ctx.fillStyle = "#e91e63";
-  ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize, gridSize);
-
 }
 
 
@@ -67,6 +78,26 @@ document.addEventListener("keydown", (e) => {
   // Prevent the page from scrolling with arrow keys
   if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key)) {
     e.preventDefault();
+  }
+  switch (e.key) {
+    case "ArrowRight":
+      sx += 5;
+    break;
+
+    case "ArrowLeft":
+      sx -= 5;
+      break;
+
+    case "ArrowDown":
+      ssx += 5;
+      break;
+
+          case "ArrowUp":
+      ssx -= 5;
+      break;
+    default:
+      console.log(ssx)
+      break;
   }
   
 });
