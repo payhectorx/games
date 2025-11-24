@@ -16,7 +16,6 @@ let food;
 let score;
 let gameOver;
 let loopId;
-
 const snakeWidth = 10;
 let sx = (canvas.width/2-5) + (snakeWidth/2);
 
@@ -31,14 +30,21 @@ function resetGame() {
   loopId = setInterval(gameLoop, 100); // run game loop every 100 ms
 }
 
+
+
 function gameLoop() {
   if (gameOver) return;
 
   update();
   draw();
+
 }
 
+
+
+
 function update() {
+
 }
 
 function draw() {
@@ -61,8 +67,17 @@ function draw() {
     psx += 10;
     even = !even
   }
-  
+  ctx.fillStyle = "#ff0000ff";
+  ctx.fillRect(100, 100, 10, 10) 
+             ctx.fillStyle = "#ff0000ff";
+  ctx.fillRect(canvas.width-(Math.random() * canvas.width- 10), canvas.height-(Math.random() * canvas.height-10), 10, 10);
 }
+
+
+
+
+
+
 
 
 function endGame() {
@@ -81,23 +96,32 @@ document.addEventListener("keydown", (e) => {
   }
   switch (e.key) {
     case "ArrowRight":
-      sx += 5;
+      sx += 10;
     break;
 
     case "ArrowLeft":
-      sx -= 5;
+      sx -= 10;
       break;
 
     case "ArrowDown":
-      ssx += 5;
+      ssx += 10;
       break;
 
           case "ArrowUp":
-      ssx -= 5;
+      ssx -= 10;
       break;
+
+          case "r":
+  
+          break;
+
+
+
+
     default:
-      console.log(ssx)
-      break;
+      console.log(10 + (Math.random() * 90))
+      console.log(Math.round(5.2))
+     break;
   }
   
 });
